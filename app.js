@@ -57,8 +57,30 @@ function runStars(timeNow) {
     //update stars horizontal position
     stars[i].horizontalPosition +=
       stars[i].horizontalVelocity * timeDiff * 0.001;
+
+    //reposition the stars left and right
+    if (stars[i].horizontalPosition < 0 - stars[i].starRadius) {
+      stars[i].horizontalPosition = canvasEl.width + stars[i].starRadius;
+    } else if (
+      stars[i].horizontalPosition >
+      canvasEl.width + stars[i].starRadius
+    ) {
+      stars[i].horizontalPosition = 0 - stars[i].starRadius;
+    }
+
+    //update stars vertical position
+    stars[i].verticalPosition += stars[i].verticalVelocity * timeDiff * 0.001;
+    //reposition the stars top and bottom
+    if (stars[i].verticalPosition < 0 - stars[i].starRadius) {
+      stars[i].verticalPosition = canvasEl.width + stars[i].starRadius;
+    } else if (
+      stars[i].verticalPosition >
+      canvasEl.width + stars[i].starRadius
+    ) {
+      stars[i].verticalPosition = 0 - stars[i].starRadius;
+    }
   }
-  console.log("running");
+  //console.log("running");
   requestAnimationFrame(runStars);
 }
 
